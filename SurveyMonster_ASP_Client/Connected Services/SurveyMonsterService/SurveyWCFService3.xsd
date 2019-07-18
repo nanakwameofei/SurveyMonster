@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SurveyWCF.SurveyWCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SurveyWCF.SurveyWCF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfSurvey">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Survey" nillable="true" type="tns:Survey" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSurvey" nillable="true" type="tns:ArrayOfSurvey" />
+  <xs:complexType name="Survey">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsActive" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastModified" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastModifiedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Questions" nillable="true" type="tns:ArrayOfQuestion" />
+      <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SurveyTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Transcripts" nillable="true" type="tns:ArrayOfTranscript" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Survey" nillable="true" type="tns:Survey" />
+  <xs:complexType name="ArrayOfQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Question" nillable="true" type="tns:Question" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQuestion" nillable="true" type="tns:ArrayOfQuestion" />
+  <xs:complexType name="Question">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LastModified" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastModifiedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PossibleAnswers" nillable="true" type="tns:ArrayOfPossibleAnswer" />
+      <xs:element minOccurs="0" name="QuestionText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Survey" nillable="true" type="tns:Survey" />
+      <xs:element minOccurs="0" name="SurveyId" type="xs:int" />
+      <xs:element minOccurs="0" name="TranscriptItems" nillable="true" type="tns:ArrayOfTranscriptItem" />
+      <xs:element minOccurs="0" name="Transcripts" nillable="true" type="tns:ArrayOfTranscript" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Question" nillable="true" type="tns:Question" />
+  <xs:complexType name="ArrayOfPossibleAnswer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PossibleAnswer" nillable="true" type="tns:PossibleAnswer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPossibleAnswer" nillable="true" type="tns:ArrayOfPossibleAnswer" />
+  <xs:complexType name="PossibleAnswer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsCorrectAnswer" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastModified" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PossibleAnswerText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Question" nillable="true" type="tns:Question" />
+      <xs:element minOccurs="0" name="QuestionId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PossibleAnswer" nillable="true" type="tns:PossibleAnswer" />
+  <xs:complexType name="ArrayOfTranscriptItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TranscriptItem" nillable="true" type="tns:TranscriptItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTranscriptItem" nillable="true" type="tns:ArrayOfTranscriptItem" />
+  <xs:complexType name="TranscriptItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsCorrect" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastModified" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Question" nillable="true" type="tns:Question" />
+      <xs:element minOccurs="0" name="QuestionId" type="xs:int" />
+      <xs:element minOccurs="0" name="SelectedAnswerId" type="xs:int" />
+      <xs:element minOccurs="0" name="Transcript" nillable="true" type="tns:Transcript" />
+      <xs:element minOccurs="0" name="TranscriptId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TranscriptItem" nillable="true" type="tns:TranscriptItem" />
+  <xs:complexType name="Transcript">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsCorrect" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastModified" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QuestionId" type="xs:int" />
+      <xs:element minOccurs="0" name="RespondentId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Score" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Survey" nillable="true" type="tns:Survey" />
+      <xs:element minOccurs="0" name="SurveyId" type="xs:int" />
+      <xs:element minOccurs="0" name="TranscriptItems" nillable="true" type="tns:ArrayOfTranscriptItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Transcript" nillable="true" type="tns:Transcript" />
+  <xs:complexType name="ArrayOfTranscript">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Transcript" nillable="true" type="tns:Transcript" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTranscript" nillable="true" type="tns:ArrayOfTranscript" />
+</xs:schema>

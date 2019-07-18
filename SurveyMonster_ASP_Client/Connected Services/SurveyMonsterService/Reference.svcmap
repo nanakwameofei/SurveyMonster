@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="313672ec-081d-4865-8f60-9e37eb544416" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2341/SurveyWCFService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SurveyWCFService.xsd" MetadataType="Schema" ID="f9cf1292-07c9-4a69-b63b-e47b0be0d6f6" SourceId="1" SourceUrl="http://localhost:2341/SurveyWCFService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SurveyWCFService.disco" MetadataType="Disco" ID="c9f6c6db-25a3-45a7-910b-de02f93563fb" SourceId="1" SourceUrl="http://localhost:2341/SurveyWCFService.svc?disco" />
+    <MetadataFile FileName="SurveyWCFService1.xsd" MetadataType="Schema" ID="fd78dea7-391c-46cf-990c-1476fb28cbe7" SourceId="1" SourceUrl="http://localhost:2341/SurveyWCFService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SurveyWCFService2.xsd" MetadataType="Schema" ID="dae68026-6142-4094-b866-cd4b9f5cc34f" SourceId="1" SourceUrl="http://localhost:2341/SurveyWCFService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SurveyWCFService3.xsd" MetadataType="Schema" ID="b148c187-38cf-4e14-b7a9-10b4af4833cb" SourceId="1" SourceUrl="http://localhost:2341/SurveyWCFService.svc?xsd=xsd3" />
+    <MetadataFile FileName="SurveyWCFService.wsdl" MetadataType="Wsdl" ID="834281fb-8a61-4141-8265-41c5251cd0bc" SourceId="1" SourceUrl="http://localhost:2341/SurveyWCFService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

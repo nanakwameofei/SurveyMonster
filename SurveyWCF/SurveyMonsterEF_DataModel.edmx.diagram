@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d3603e98b5c4d8aa34d11de4a0bb4bf" Name="Diagram1">
+        <EntityTypeShape EntityType="SurveyMonsterModel.PossibleAnswer" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SurveyMonsterModel.Question" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SurveyMonsterModel.Survey" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="SurveyMonsterModel.FK_PossibleAnswer_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="SurveyMonsterModel.FK_Question_Survey1" />
+        <EntityTypeShape EntityType="SurveyMonsterModel.Transcript" Width="1.5" PointX="3" PointY="5" />
+        <AssociationConnector Association="SurveyMonsterModel.FK_Transcript_Question" />
+        <AssociationConnector Association="SurveyMonsterModel.FK_Transcript_Survey" />
+        <EntityTypeShape EntityType="SurveyMonsterModel.TranscriptItem" Width="1.5" PointX="5.25" PointY="5.25" />
+        <AssociationConnector Association="SurveyMonsterModel.FK_TranscriptItem_Transcript" />
+        <AssociationConnector Association="SurveyMonsterModel.FK_TranscriptItem_Question" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

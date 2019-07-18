@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SurveyMonsterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PossibleAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PossibleAnswerText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsCorrectAnswer" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="QuestionText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SurveyId" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Survey">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="SurveyTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Transcript">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RespondentId" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="Score" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SurveyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TranscriptItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TranscriptId" Type="int" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="IsCorrect" Type="bit" Nullable="false" />
+          <Property Name="SelectedAnswerId" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_PossibleAnswer_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="PossibleAnswer" Type="Self.PossibleAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PossibleAnswer">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Survey">
+          <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Survey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="SurveyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transcript_Survey">
+          <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
+          <End Role="Transcript" Type="Self.Transcript" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Survey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transcript">
+              <PropertyRef Name="SurveyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranscriptItem_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="TranscriptItem" Type="Self.TranscriptItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranscriptItem">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranscriptItem_Transcript">
+          <End Role="Transcript" Type="Self.Transcript" Multiplicity="1" />
+          <End Role="TranscriptItem" Type="Self.TranscriptItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transcript">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranscriptItem">
+              <PropertyRef Name="TranscriptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SurveyMonsterModelStoreContainer">
+          <EntitySet Name="PossibleAnswer" EntityType="Self.PossibleAnswer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transcript" EntityType="Self.Transcript" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TranscriptItem" EntityType="Self.TranscriptItem" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PossibleAnswer_Question" Association="Self.FK_PossibleAnswer_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="PossibleAnswer" EntitySet="PossibleAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Survey" Association="Self.FK_Question_Survey">
+            <End Role="Survey" EntitySet="Survey" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transcript_Survey" Association="Self.FK_Transcript_Survey">
+            <End Role="Survey" EntitySet="Survey" />
+            <End Role="Transcript" EntitySet="Transcript" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranscriptItem_Question" Association="Self.FK_TranscriptItem_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="TranscriptItem" EntitySet="TranscriptItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranscriptItem_Transcript" Association="Self.FK_TranscriptItem_Transcript">
+            <End Role="Transcript" EntitySet="Transcript" />
+            <End Role="TranscriptItem" EntitySet="TranscriptItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SurveyMonsterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PossibleAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PossibleAnswerText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsCorrectAnswer" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_PossibleAnswer_Question" FromRole="PossibleAnswer" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="QuestionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SurveyId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PossibleAnswers" Relationship="Self.FK_PossibleAnswer_Question" FromRole="Question" ToRole="PossibleAnswer" />
+          <NavigationProperty Name="Survey" Relationship="SurveyMonsterModel.FK_Question_Survey1" FromRole="Question" ToRole="Survey" />
+          <NavigationProperty Name="Transcripts" Relationship="SurveyMonsterModel.FK_Transcript_Question" FromRole="Question" ToRole="Transcript" />
+          <NavigationProperty Name="TranscriptItems" Relationship="SurveyMonsterModel.FK_TranscriptItem_Question" FromRole="Question" ToRole="TranscriptItem" />
+        </EntityType>
+        <EntityType Name="Survey">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SurveyTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastModified" Type="DateTime" Precision="3" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Questions" Relationship="SurveyMonsterModel.FK_Question_Survey1" FromRole="Survey" ToRole="Question" />
+          <NavigationProperty Name="Transcripts" Relationship="SurveyMonsterModel.FK_Transcript_Survey" FromRole="Survey" ToRole="Transcript" />
+        </EntityType>
+        <Association Name="FK_PossibleAnswer_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="PossibleAnswer" Type="Self.PossibleAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PossibleAnswer">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SurveyMonsterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PossibleAnswers" EntityType="Self.PossibleAnswer" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Surveys" EntityType="Self.Survey" />
+          <AssociationSet Name="FK_PossibleAnswer_Question" Association="Self.FK_PossibleAnswer_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="PossibleAnswer" EntitySet="PossibleAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Survey1" Association="SurveyMonsterModel.FK_Question_Survey1">
+            <End Role="Survey" EntitySet="Surveys" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <EntitySet Name="Transcripts" EntityType="SurveyMonsterModel.Transcript" />
+          <AssociationSet Name="FK_Transcript_Question" Association="SurveyMonsterModel.FK_Transcript_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="Transcript" EntitySet="Transcripts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transcript_Survey" Association="SurveyMonsterModel.FK_Transcript_Survey">
+            <End Role="Survey" EntitySet="Surveys" />
+            <End Role="Transcript" EntitySet="Transcripts" />
+          </AssociationSet>
+          <EntitySet Name="TranscriptItems" EntityType="SurveyMonsterModel.TranscriptItem" />
+          <AssociationSet Name="FK_TranscriptItem_Transcript" Association="SurveyMonsterModel.FK_TranscriptItem_Transcript">
+            <End Role="Transcript" EntitySet="Transcripts" />
+            <End Role="TranscriptItem" EntitySet="TranscriptItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranscriptItem_Question" Association="SurveyMonsterModel.FK_TranscriptItem_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="TranscriptItem" EntitySet="TranscriptItems" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Question_Survey1">
+          <End Type="SurveyMonsterModel.Survey" Role="Survey" Multiplicity="1" />
+          <End Type="SurveyMonsterModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Survey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="SurveyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Transcript">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RespondentId" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LastModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="IsCorrect" Type="Boolean" Nullable="false" />
+          <Property Name="SurveyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Survey" Relationship="SurveyMonsterModel.FK_Transcript_Survey" FromRole="Transcript" ToRole="Survey" />
+          <Property Name="Score" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="TranscriptItems" Relationship="SurveyMonsterModel.FK_TranscriptItem_Transcript" FromRole="Transcript" ToRole="TranscriptItem" />
+        </EntityType>
+        <Association Name="FK_Transcript_Question">
+          <End Type="SurveyMonsterModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="SurveyMonsterModel.Transcript" Role="Transcript" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transcript">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transcript_Survey">
+          <End Type="SurveyMonsterModel.Survey" Role="Survey" Multiplicity="1" />
+          <End Type="SurveyMonsterModel.Transcript" Role="Transcript" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Survey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transcript">
+              <PropertyRef Name="SurveyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TranscriptItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TranscriptId" Type="Int32" Nullable="false" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="IsCorrect" Type="Boolean" Nullable="false" />
+          <Property Name="SelectedAnswerId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Transcript" Relationship="SurveyMonsterModel.FK_TranscriptItem_Transcript" FromRole="TranscriptItem" ToRole="Transcript" />
+          <NavigationProperty Name="Question" Relationship="SurveyMonsterModel.FK_TranscriptItem_Question" FromRole="TranscriptItem" ToRole="Question" />
+        </EntityType>
+        <Association Name="FK_TranscriptItem_Transcript">
+          <End Type="SurveyMonsterModel.Transcript" Role="Transcript" Multiplicity="1" />
+          <End Type="SurveyMonsterModel.TranscriptItem" Role="TranscriptItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transcript">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranscriptItem">
+              <PropertyRef Name="TranscriptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranscriptItem_Question">
+          <End Type="SurveyMonsterModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="SurveyMonsterModel.TranscriptItem" Role="TranscriptItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranscriptItem">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SurveyMonsterModelStoreContainer" CdmEntityContainer="SurveyMonsterEntities">
+          <EntitySetMapping Name="PossibleAnswers">
+            <EntityTypeMapping TypeName="SurveyMonsterModel.PossibleAnswer">
+              <MappingFragment StoreEntitySet="PossibleAnswer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PossibleAnswerText" ColumnName="PossibleAnswerText" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsCorrectAnswer" ColumnName="IsCorrectAnswer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="SurveyMonsterModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Surveys">
+            <EntityTypeMapping TypeName="SurveyMonsterModel.Survey">
+              <MappingFragment StoreEntitySet="Survey">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SurveyTitle" ColumnName="SurveyTitle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transcripts">
+            <EntityTypeMapping TypeName="SurveyMonsterModel.Transcript">
+              <MappingFragment StoreEntitySet="Transcript">
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="RespondentId" ColumnName="RespondentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranscriptItems">
+            <EntityTypeMapping TypeName="SurveyMonsterModel.TranscriptItem">
+              <MappingFragment StoreEntitySet="TranscriptItem">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SelectedAnswerId" ColumnName="SelectedAnswerId" />
+                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="TranscriptId" ColumnName="TranscriptId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

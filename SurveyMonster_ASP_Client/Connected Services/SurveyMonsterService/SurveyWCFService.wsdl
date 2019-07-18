@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SurveyWCFService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:2341/SurveyWCFService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:2341/SurveyWCFService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:2341/SurveyWCFService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SurveyWCF" />
+      <xsd:import schemaLocation="http://localhost:2341/SurveyWCFService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SurveyWCF.SurveyWCF" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISurveyWCFService_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetAllActiveSurveys_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllActiveSurveys" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetAllActiveSurveys_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllActiveSurveysResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_AddQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddQuestion" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_AddQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_CreateSurvey_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSurvey" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_CreateSurvey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSurveyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_SaveTranscript_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveTranscript" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_SaveTranscript_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveTranscriptResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetQuestionAnswer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionAnswer" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetQuestionAnswer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionAnswerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetQuestionPossibleAnswers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionPossibleAnswers" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetQuestionPossibleAnswers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionPossibleAnswersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetSurveyQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurveyQuestions" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetSurveyQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurveyQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetSurvey_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurvey" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetSurvey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurveyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetAllSurveys_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSurveys" />
+  </wsdl:message>
+  <wsdl:message name="ISurveyWCFService_GetAllSurveys_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSurveysResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISurveyWCFService">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/GetData" message="tns:ISurveyWCFService_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/GetDataResponse" message="tns:ISurveyWCFService_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/GetDataUsingDataContract" message="tns:ISurveyWCFService_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/GetDataUsingDataContractResponse" message="tns:ISurveyWCFService_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActiveSurveys">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/GetAllActiveSurveys" message="tns:ISurveyWCFService_GetAllActiveSurveys_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/GetAllActiveSurveysResponse" message="tns:ISurveyWCFService_GetAllActiveSurveys_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/AddQuestion" message="tns:ISurveyWCFService_AddQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/AddQuestionResponse" message="tns:ISurveyWCFService_AddQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSurvey">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/CreateSurvey" message="tns:ISurveyWCFService_CreateSurvey_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/CreateSurveyResponse" message="tns:ISurveyWCFService_CreateSurvey_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveTranscript">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/SaveTranscript" message="tns:ISurveyWCFService_SaveTranscript_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/SaveTranscriptResponse" message="tns:ISurveyWCFService_SaveTranscript_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionAnswer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/GetQuestionAnswer" message="tns:ISurveyWCFService_GetQuestionAnswer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/GetQuestionAnswerResponse" message="tns:ISurveyWCFService_GetQuestionAnswer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionPossibleAnswers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/GetQuestionPossibleAnswers" message="tns:ISurveyWCFService_GetQuestionPossibleAnswers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/GetQuestionPossibleAnswersResponse" message="tns:ISurveyWCFService_GetQuestionPossibleAnswers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyQuestions">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/GetSurveyQuestions" message="tns:ISurveyWCFService_GetSurveyQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/GetSurveyQuestionsResponse" message="tns:ISurveyWCFService_GetSurveyQuestions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurvey">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/GetSurvey" message="tns:ISurveyWCFService_GetSurvey_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/GetSurveyResponse" message="tns:ISurveyWCFService_GetSurvey_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSurveys">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISurveyWCFService/GetAllSurveys" message="tns:ISurveyWCFService_GetAllSurveys_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISurveyWCFService/GetAllSurveysResponse" message="tns:ISurveyWCFService_GetAllSurveys_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISurveyWCFService" type="tns:ISurveyWCFService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActiveSurveys">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/GetAllActiveSurveys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/AddQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSurvey">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/CreateSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveTranscript">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/SaveTranscript" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionAnswer">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/GetQuestionAnswer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionPossibleAnswers">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/GetQuestionPossibleAnswers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyQuestions">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/GetSurveyQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurvey">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/GetSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSurveys">
+      <soap:operation soapAction="http://tempuri.org/ISurveyWCFService/GetAllSurveys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SurveyWCFService">
+    <wsdl:port name="BasicHttpBinding_ISurveyWCFService" binding="tns:BasicHttpBinding_ISurveyWCFService">
+      <soap:address location="http://localhost:2341/SurveyWCFService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
